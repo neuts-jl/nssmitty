@@ -67,7 +67,7 @@
     <Version Value="11"/>
     <PathDelim Value="\"/>
     <Target>
-      <Filename Value="runtime\nssmitty"/>
+      <Filename Value="runtime\$(TargetOS)\nssmitty"/>
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>

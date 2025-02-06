@@ -1,0 +1,11 @@
+title = List Users
+type = report
+shortcut = users
+parent = user_mgmt_menu
+action = \
+  echo "Username,UID,GID,Fullname,Home Directory,Shell"
+  while IFS=: read -r username password uid gid fullname homedir shell; do
+      fullname=$(echo "$fullname" | sed 's/:/ /g')
+      echo "$username,$uid,$gid,\"$fullname\",$homedir,$shell"
+  done < /etc/passwd | sort -t, -k1
+

@@ -1,0 +1,36 @@
+title = Partition and Volume Management
+type = menu
+parent = main_menu
+help = Manage disk partitions, logical volumes, and filesystems.
+
+caption = List Disks
+help = Display available disks and their details.
+action = list_disks.scr
+
+caption = Create Partition
+help = Create a new disk partition.
+action = create_partition.scr
+
+caption = Delete Partition
+help = Remove an existing partition.
+action = delete_partition.scr
+
+caption = Create Volume Group
+help = Create a logical volume group from partitions.
+action = create_volume_group.scr
+
+caption = Manage Logical Volumes
+help = Create, modify, or delete logical volumes.
+action = manage_logical_volumes.scr
+
+caption = Format Partition
+help = Format a partition with a filesystem.
+action = format_partition.scr
+
+caption = Mount Partition
+help = Mount a formatted partition to a directory.
+action = mount_partition.scr
+#Item added by nssmitty
+caption = List Disks
+action = list_disks
+

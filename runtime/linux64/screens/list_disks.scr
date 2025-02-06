@@ -1,0 +1,7 @@
+title = List Disks
+type = report
+parent = partition_mgmt_menu
+action = \
+  echo "Device,Size,Type,Mount Point" \
+  lsblk -o NAME,SIZE,TYPE,MOUNTPOINT | awk 'NR>1 \
+  {printf "%s,%s,%s,%s\n", $1, $2, $3, $4}'
