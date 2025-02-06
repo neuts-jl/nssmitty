@@ -1,0 +1,33 @@
+title = Software Management Menu
+type = menu
+parent = main_menu
+help = Install, remove, or update software packages.
+
+caption = Install Software
+help = Install new software packages from available sources.
+action = software_install 
+
+caption = Remove Software
+help = Remove installed software packages.
+action = software_remove
+
+caption = Update Software
+help = Update installed software to the latest versions.
+action = software_update
+
+caption = List Installed Software
+help = View the list of installed software packages and their versions.
+action = software_list
+
+caption = Check for Software Dependencies
+help = Check for dependencies between software packages.
+action = software_check_dependencies
+
+caption = Software Repositories
+help = Configure and manage software repositories.
+action = software_repositories
+
+caption = Software Package Logs
+help = View the logs related to software installations, removals, or updates.
+action = software_package_logs
+

@@ -1,0 +1,52 @@
+title = Add a User
+parent = user_mgmt_menu
+type = form
+action = \
+  if [ "$Confirm" = "yes" ]; then
+    CMD="ueradd -m -s $User_Shell"
+    [ -n "$Home_Directory" ] && CMD="$CMD -d $Home_Directory"
+    [ -n "$User_Groups" ] && CMD="$CMD -G $User_Groups"
+    CMD="$CMD $Username"
+    echo "Create user..."
+    eval "$CMD"
+    if [ $? -eq 0 ]; then
+        echo "User added successfully."
+    else
+        echo "Error while adding the user."
+    fi
+  else
+    echo "User creation cancelled."
+  fi
+
+
+caption = User Name
+name = Username
+help = Enter the username for the new account.
+type = input
+required = yes
+
+caption = User Shell
+name = User_Shell
+help = Specify the default shell for the user (e.g., /bin/bash, /bin/zsh).
+type = list
+values = /bin/bash, /bin/zsh, /bin/sh, /usr/bin/fish
+default = /bin/bash
+required = yes
+
+caption = Home Directory
+name = Home_Directory
+help = Specify the home directory for the user (leave blank for the default, e.g., /home/username).
+type = input
+
+caption = Additional Groups
+name = User_Groups
+help = List any additional groups the user should belong to, separated by commas (e.g., sudo,users).
+type = input
+
+caption = Confirm
+name = Confirm
+help = Confirm that you want to create this user account.
+type = yesno
+default = no
+required = yes
+

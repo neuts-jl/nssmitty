@@ -1,0 +1,8 @@
+title = Software Package Logs
+type = report
+parent = software_mgmt_menu
+action = \
+  echo "Timestamp,Action,Package Name,Version,Status"
+  while IFS=" " read -r timestamp action pkgname version status; do
+      echo "$timestamp,$action,$pkgname,$version,$status"
+  done < /var/log/software_install.log | sort -t, -k1

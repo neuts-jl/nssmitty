@@ -1,0 +1,29 @@
+title = User Management - Configuration
+type = menu
+help = User administration screen.\nYou can list, add, edit and delete users
+parent = main_menu
+
+caption = Add User
+help = Create a new user account.
+action = user_add
+
+caption = Modify User
+help = Show/Modify the properties of an existing user.
+action = user_modify
+
+caption = Change User Password
+help = Change the password of an existing user.
+action = user_change_password
+
+caption = Change User Password Attributes
+help = Change/Show Password Attributes for a User
+action = user_change_password_attributes
+
+caption = Delete User
+help = Delete an existing user account.
+action = user_delete
+
+caption = List Users
+help = Display a list of all existing user accounts.
+action = user_list
+

@@ -1,0 +1,31 @@
+title = Install New Software Package
+type = form
+shortcut = aptinstall
+parent = software_mgmt_menu
+action = \
+  if [ "$Confirm_Installation" = "yes" ]; then
+    echo "Installing software package: $Software_Package..."
+    apt-get install -y $Software_Package
+    if [ $? -eq 0 ]; then
+        echo "Software package installed successfully."
+    else
+        echo "Error while installing the software package."
+    fi
+  else
+    echo "Software installation cancelled."
+  fi
+
+caption = Software Package Name
+name = Software_Package
+help = Select the software package to install. The package must be available in the system repositories.
+type = list
+values = $(apt-cache search . | awk '{print $1}' | sort)
+required = yes
+
+caption = Confirm Installation
+name = Confirm_Installation
+help = Confirm that you want to install this software package.
+type = yesno
+default = no
+condition = Software_Package
+    

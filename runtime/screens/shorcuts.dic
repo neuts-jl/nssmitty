@@ -1,0 +1,10 @@
+#Do not modify, written by nssmitty!
+#Add a "shortcut" tag while waiting for your screen files
+aptinstall=software_install
+aptremove=software_remove
+aptupdate=software_update
+passwd=user_change_password
+chpasswd=user_change_password_attributes
+rmuser=user_delete
+users=user_list
+chuser=user_modify

@@ -1,0 +1,40 @@
+title = Delete a Software Package
+type = form
+shortcut = aptremove
+parent = software_mgmt_menu
+action = \
+  if [ "$Confirm_Deletion" = "yes" ]; then
+    CMD="apt-get remove -y"
+    [ "$Purge_Config" = "yes" ] && CMD="apt-get purge -y"
+    CMD="$CMD $Software_Package"
+    echo "Deleting software package..."
+    eval "$CMD"
+    if [ $? -eq 0 ]; then
+        echo "Software package deleted successfully."
+    else
+        echo "Error while deleting the software package."
+    fi
+  else
+    echo "Software deletion cancelled."
+  fi
+
+caption = Software Package Name
+name = Software_Package
+help = Select the software package to delete. Removing a package will uninstall it but may leave configuration files.
+type = list
+values = $(dpkg --get-selections | awk '{print $1}' | sort)
+required = yes
+
+caption = Purge Configuration Files
+name = Purge_Config
+help = Choose whether to remove configuration files along with the package (equivalent to 'apt-get purge').
+type = yesno
+default = no
+condition = Software_Package
+
+caption = Confirm Deletion
+name = Confirm_Deletion
+help = Confirm that you want to delete this software package. This action is irreversible.
+type = yesno
+default = no
+condition = Software_Package

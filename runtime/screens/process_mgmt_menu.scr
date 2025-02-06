@@ -1,0 +1,9 @@
+#Menu added by nssmitty
+title = process management menu
+type = menu
+parent = main_menu
+
+#Item added by nssmitty
+caption = List process
+action = list_process
+

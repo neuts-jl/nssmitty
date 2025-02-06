@@ -1,0 +1,57 @@
+title = Modify a User
+type = form
+shortcut = chuser
+parent = user_mgmt_menu
+action = \  
+  CMD="usermod"
+  [ -n "$Change_Shell" ] && CMD="$CMD -s $Change_Shell"
+  [ -n "$Change_Home_Directory" ] && CMD="$CMD -d $Change_Home_Directory"
+  [ -n "$Add_to_Groups" ] && CMD="$CMD -G $Add_to_Groups"
+  [ "$Lock_Account" = "yes" ] && CMD="$CMD -L"
+  CMD="$CMD $Username"
+  echo "Modifying user..."
+  eval "$CMD"
+  rc=$?
+  if [ $rc -eq 0 ]; then
+      echo "User modified successfully."
+  else
+      echo "Error while modifying the user."
+      exit 99
+  fi
+  exit $rc
+
+caption = User name
+name = Username
+help = Select the username of the account to modify.
+type = list
+values = $(cut -d: -f1 /etc/passwd|sort -t, -k1)
+required = yes
+
+caption = Modify Shell
+name = Change_Shell
+help = Enter the new shell (e.g., /bin/bash, /bin/zsh).
+type = input
+condition = Username
+default = $(case $Username in root) echo /bin/bash ;; guest) echo /bin/false ;; john) echo /bin/zsh ;; *) echo /bin/bash ;; esac)
+
+caption = Modify Home Directory
+name = Change_Home_Directory
+help = Specify a new home directory (leave blank to keep current).
+type = input
+condition = Username
+default = $(case $Username in root) echo /root ;; guest) echo /home/guest ;; john) echo /home/john ;; *) echo /home/$Username ;; esac)
+
+caption = Add to Groups
+name = Add_to_Groups
+help = List additional groups separated by commas (e.g., sudo,users).
+type = input
+condition = Username
+default = $(case $Username in root) echo "wheel,adm" ;; guest) echo "" ;; john) echo "sudo,users" ;; *) echo "" ;; esac)
+
+caption = Lock Account
+name = Lock_Account
+help = Lock this account to prevent logins.
+type = yesno
+condition = Username
+default = $(case $Username in root) echo no ;; guest) echo yes ;; john) echo no ;; *) echo no ;; esac)
+

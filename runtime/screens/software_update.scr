@@ -1,0 +1,28 @@
+title = Update Installed Software
+type = form
+shortcut = aptupdate
+parent = software_mgmt_menu
+action = \
+  if [ "$Confirm_Update" = "yes" ]; then
+    echo "Updating package list..."
+    apt-get update
+    if [ $? -eq 0 ]; then
+        echo "Upgrading installed packages..."
+        apt-get upgrade -y
+        if [ $? -eq 0 ]; then
+            echo "Software updated successfully."
+        else
+            echo "Error while upgrading packages."
+        fi
+    else
+        echo "Error while updating package list."
+    fi
+  else
+    echo "Software update cancelled."
+  fi
+
+caption = Confirm Update
+name = Confirm_Update
+help = Confirm that you want to update all installed software packages to the latest versions.
+type = yesno
+default = no

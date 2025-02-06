@@ -1,0 +1,8 @@
+title = List Software
+type = report
+parent = software_mgmt_menu
+action = \
+  echo "Package,Version,Architecture"
+  dpkg-query -W -f='${Package},${Version},${Architecture},\n' | sed 's/"/""/g'
+
+

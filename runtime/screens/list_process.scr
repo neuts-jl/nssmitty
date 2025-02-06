@@ -1,0 +1,8 @@
+title = List process
+type = report
+parent = process_mgmt_menu
+action = \
+  ps -eo pid,user,%cpu,%mem,command --no-headers | \
+  awk 'BEGIN {print "PID,USER,%CPU,%MEM,COMMAND"} \
+  {printf "%s,%s,%s,%s,\"%s\"\n", $1, $2, $3, $4, $5}'
+
