@@ -37,7 +37,7 @@ Available options:
   -B, --build     Build shortcuts dico
 
 ## Screen file structure :
-[specification screens](https://github.com/neuts-jl/ttyconsole/spec-screens.pdf
+[specification screens](https://github.com/neuts-jl/nssmitty/blob/main/spec-screens.pdf)
 
 ## screen file example
 ```ini
