@@ -55,7 +55,8 @@ uses
   windows,
   {$ENDIF}
   Classes, SysUtils, process, uscreenfile,
-  uttyconsole, uttykeyboard, uttylist, uttyeditfields, ucsvttytable, uttybox;
+  uttyansi,uttyconsole, uttykeyboard, uttylist,
+  uttyeditfields, ucsvttytable, uttybox;
 
 const
   KVersion = 'V1.0.0';
