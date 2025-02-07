@@ -1,6 +1,6 @@
 {
   *****************************************************************************
-   Program     : [Program Name]
+   Program     : nssmitty
    Author      : NEUTS JL
    License     : GPL (GNU General Public License)
    Date        : 01/02/2025
@@ -40,7 +40,7 @@
    this program. If not, see <https://www.gnu.org/licenses/>.
   *****************************************************************************
 }
-unit umain;
+  unit umain;
 
 {$mode ObjFPC}{$H+}
 {$notes off}
