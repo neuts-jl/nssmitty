@@ -1,4 +1,4 @@
-# nssmitty
+# nssmitty a lightweight SMITTY(AIX) for linux
 
 NSMITTY is nostalgically and heavily inspired by SMITTY AIX.
 NSSMITY is an interactive interface application designed to
