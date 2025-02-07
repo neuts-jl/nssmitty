@@ -8,7 +8,7 @@ NSSMITY creates and executes commands according to the user's
 instructions. Since NSSMITTY executes commands, you must have
 the necessary authority to execute the commands it executes.
 
-Features : 
+##Features : 
 - Interactive menu interface
 - User assistance
 - Traceability of operations
@@ -17,7 +17,7 @@ Features :
 - Possibility of displaying online commands performed
  (to be able to make scripts later for example)
 
-WARNING : 
+##WARNING : 
 This program does not use the CRT unit, because it disrupts
 the proper functioning of the console, especially for launched
 shells.
