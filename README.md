@@ -37,24 +37,7 @@ Available options:
   -B, --build     Build shortcuts dico
 
 ## Screen file structure :
-| Tag        | Position in file | Default | Position  | Description                                                                                  |
-|------------|----------------|---------|-----------|----------------------------------------------------------------------------------------------|
-| title      | yes            | yes     | yes       | Required File begin Defines the title of the screen.                                         |
-| type       | menu           | report  | form      | menu Anywhere Specifies the type of the screen.                                              |
-| help       | yes            | yes     | yes       | Provides contextual help to explain the purpose of the screen.                               |
-| action     | no             | yes     | yes       | Required Anywhere Contains the script or command that will be executed when the user submits the screen. |
-| parent     | yes            | yes     | yes       | Indicates the parent menu to which this screen belongs.                                      |
-| logconsole | no             | no      | yes       | Allows capturing of the console display, to be disabled if display problem and/or interactive shell. |
-| shortcut   | yes            | yes     | yes       | Sets a shortcut to execute the screen.                                                      |
-| caption    | yes            | no      | yes       | Required To start field Defines the label displayed for the field.                          |
-| type       | action         | no      | input     | Specifies the type of the field.                                                            |
-| name       | no             | no      | yes       | Defines the internal name of the field, used in the script. It must be unique.              |
-| help       | yes            | no      | yes       | Provides contextual help to explain the purpose of the field.                               |
-| default    | no             | no      | yes       | Specifies the default value based on the user's selection.                                  |
-| condition  | no             | no      | yes       | Set a condition to display or enable the field. You must specify the name of another field. If this condition field is empty, the field will be invisible. |
-| values     | no             | no      | yes       | (Only for lists) Defines the available options. If the content starts with `$(...)`, the shell provides the values, otherwise fixed values are separated by commas. |
-| required   | no             | no      | yes       | Indicates whether the field is mandatory.                                                   |
-| action     | yes            | no      | no        | Required if menu Anywhere Contains the script or command that will be executed when the user submits the item. |
+[specification screens](https://github.com/neuts-jl/ttyconsole/spec-screens.pdf
 
 ## screen file example
 ```ini
