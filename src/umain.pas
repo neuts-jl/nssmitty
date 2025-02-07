@@ -59,7 +59,7 @@ uses
   uttyeditfields, ucsvttytable, uttybox;
 
 const
-  KVersion = 'V1.0.0';
+  KVersion = 'V0.0.1';
 
 procedure Main;
 
