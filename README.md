@@ -17,6 +17,8 @@ the necessary authority to execute the commands it executes.
 - Possibility of displaying online commands performed
  (to be able to make scripts later for example)
 
+## Command line :
+
 ## WARNING : 
 This program does not use the CRT unit, because it disrupts
 the proper functioning of the console, especially for launched
