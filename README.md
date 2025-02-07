@@ -52,22 +52,22 @@ Available options:
 | action     | yes            | no      | no        | Required if menu Anywhere Contains the script or command that will be executed when the user submits the item. |
 
 ## screen file example
-'''
+```ini
 title = Change User Password
 type = form
 shortcut = passwd
 parent = user_mgmt_menu
 logconsole = no
 action = \
-  CMD="passwd"
-  CMD="$CMD $Username"
-  echo "Changing password for user: $Username"
-  eval "$CMD"
-  if [ $? -eq 0 ]; then
-      echo "Password changed successfully."
-  else
-      echo "Error while changing the password."
-  fi
+    CMD="passwd"
+    CMD="$CMD $Username"
+    echo "Changing password for user: $Username"
+    eval "$CMD"
+    if [ $? -eq 0 ]; then
+        echo "Password changed successfully."
+    else
+        echo "Error while changing the password."
+    fi
 
 caption = User name
 name = Username
@@ -75,7 +75,6 @@ help = Select the username of the account to change the password for.
 type = list
 values = $(cut -d: -f1 /etc/passwd)
 required = yes
-
 
 ## WARNING : 
 This program does not use the CRT unit, because it disrupts
