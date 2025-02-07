@@ -7,7 +7,6 @@ a hierarchy of menus that can lead to interactive dialogs.
 NSSMITY creates and executes commands according to the user's
 instructions. Since NSSMITTY executes commands, you must have
 the necessary authority to execute the commands it executes.
-
 It is compiled under LAZARUS with my lib [ttyconsole](https://github.com/neuts-jl/ttyconsole)
 
 ## Contribute: 
