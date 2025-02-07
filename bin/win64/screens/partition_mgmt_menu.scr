@@ -9,27 +9,28 @@ action = list_disks.scr
 
 caption = Create Partition
 help = Create a new disk partition.
-action = create_partition.scr
+action = todo
 
 caption = Delete Partition
 help = Remove an existing partition.
-action = delete_partition.scr
+action = todo
 
 caption = Create Volume Group
 help = Create a logical volume group from partitions.
-action = create_volume_group.scr
+action = todo
 
 caption = Manage Logical Volumes
 help = Create, modify, or delete logical volumes.
-action = manage_logical_volumes.scr
+action = todo
 
 caption = Format Partition
 help = Format a partition with a filesystem.
-action = format_partition.scr
+action = todo
 
 caption = Mount Partition
 help = Mount a formatted partition to a directory.
-action = mount_partition.scr
+action = todo
+
 #Item added by nssmitty
 caption = List Disks
 action = list_disks

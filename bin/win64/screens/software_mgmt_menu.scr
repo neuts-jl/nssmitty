@@ -21,11 +21,11 @@ action = software_list
 
 caption = Check for Software Dependencies
 help = Check for dependencies between software packages.
-action = software_check_dependencies
+action = todo
 
 caption = Software Repositories
 help = Configure and manage software repositories.
-action = software_repositories
+action = todo
 
 caption = Software Package Logs
 help = View the logs related to software installations, removals, or updates.

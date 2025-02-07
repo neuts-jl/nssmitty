@@ -10,7 +10,7 @@ uses
   Classes, SysUtils, fgl;
 
 type
-  TScreenType = (stNone, stMenu, stForm, stReport);
+  TScreenType = (stNone, stMenu, stForm, stReport, stDisplay);
   TItemType = (itNone, itAction, itInput, itNumeric, itList, itYesNo);
 
   TItemScreen = class
@@ -235,6 +235,8 @@ var
       Error('The screen type in the first section has not been defined');
     if FScreenType = stReport then
       Error('This type of "report" screen does not support items');
+    if FScreenType = stDisplay then
+      Error('This type of "display" screen does not support items');
     Item := TItemScreen.Create;
     Item.Caption := Value;
     FItems.Add(Item);
@@ -251,6 +253,8 @@ var
         FScreenType := stMenu
       else if Value = 'report' then
         FScreenType := stReport
+      else if Value = 'display' then
+        FScreenType := stDisplay
       else
         Error('Incorrect type : ' + Value);
     end
@@ -311,7 +315,9 @@ var
     if FScreenType = stMenu then
       Error('incompatible type with screen menu');
     if FScreenType = stReport then
-      Error('incompatible type with screen report');
+      Error('incompatible type with report screen');
+    if FScreenType = stDisplay then
+      Error('incompatible type with display screen');
     Value:=LowerCase(Value);
     if Value='yes' then
       FLogConsole := True

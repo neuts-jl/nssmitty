@@ -16,7 +16,7 @@ action = partition_mgmt_menu
 
 caption = Network Management
 help = Configure and manage network interfaces, routing, and services.
-action = network_mgmt_menu
+action = todo
 
 caption = Software Management
 help = Install, remove, or update software packages.
@@ -24,43 +24,43 @@ action = software_mgmt_menu
 
 caption = Service Management
 help = Start, stop, or configure system services.
-action = service_mgmt_menu
+action = todo
 
 caption = Backup Management
 help = Configure and perform backups or restores.
-action = backup_mgmt_menu
+action = todo
 
 caption = System Monitoring
 help = Monitor system performance, logs, and resources.
-action = monitoring_menu
+action = todo
 
 caption = Printer Management
 help = Manage printers and print queues.
-action = printer_mgmt_menu
+action = todo
 
 caption = Group Management
 help = Manage user groups: add, remove, or modify groups.
-action = group_mgmt_menu
+action = todo
 
 caption = System Configuration
 help = Configure core system parameters and settings.
-action = system_config_menu
+action = todo
 
 caption = Security Management
 help = Manage system security, including firewalls and access controls.
-action = security_mgmt_menu
+action = todo
 
 caption = Power Management
 help = Configure power-saving settings and UPS support.
-action = power_mgmt_menu
+action = todo
 
 caption = Device Management
 help = Manage connected devices and drivers.
-action = device_mgmt_menu
+action = todo
 
 caption = Log Management
 help = View and manage system logs.
-action = log_mgmt_menu
+action = todo
 
 #Item added by nssmitty
 caption = process management menu

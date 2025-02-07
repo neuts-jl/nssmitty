@@ -40,7 +40,7 @@
    this program. If not, see <https://www.gnu.org/licenses/>.
   *****************************************************************************
 }
-  unit umain;
+unit umain;
 
 {$mode ObjFPC}{$H+}
 {$notes off}
@@ -55,7 +55,7 @@ uses
   windows,
   {$ENDIF}
   Classes, SysUtils, process, uscreenfile,
-  uttyansi,uttyconsole, uttykeyboard, uttylist,
+  uttyansi, uttyconsole, uttykeyboard, uttylist,
   uttyeditfields, ucsvttytable, uttybox;
 
 const
@@ -67,13 +67,13 @@ implementation
 
 var
   WSL, NoLog: boolean;
-  LogFileName,ScriptFilename:string;
+  LogFileName, ScriptFilename: string;
 
-function WordWrap(const InputStr: string; MaxWidth: Integer): string;
+function WordWrap(const InputStr: string; MaxWidth: integer): string;
 var
   Words: TStringList;
-  i: Integer;
-  Word, NewLine, ResultStr: string;
+  i: integer;
+  word, NewLine, ResultStr: string;
 begin
   Words := TStringList.Create;
   try
@@ -86,18 +86,18 @@ begin
 
     for i := 0 to Words.Count - 1 do
     begin
-      Word := Words[i];
+      word := Words[i];
 
       if (NewLine = '') then
-        NewLine := Word
-      else if (Length(NewLine) + Length(Word) + 1 <= MaxWidth) then
-        NewLine := NewLine + ' ' + Word
+        NewLine := word
+      else if (Length(NewLine) + Length(word) + 1 <= MaxWidth) then
+        NewLine := NewLine + ' ' + word
       else
       begin
         if ResultStr <> '' then
           ResultStr := ResultStr + sLineBreak;
         ResultStr := ResultStr + NewLine;
-        NewLine := Word;
+        NewLine := word;
       end;
     end;
 
@@ -121,7 +121,7 @@ var
 begin
   if NoLog then
     Exit;
-  if LogFileName='' then
+  if LogFileName = '' then
   begin
     LogFileName := ChangeFileExt(ParamStr(0), '.log');
     {$IFDEF LINUX}
@@ -283,7 +283,7 @@ begin
 end;
 
 function ShowBoxInfo(Title, Content: string; var index: integer;
-  Select,Wrap: boolean): integer;
+  Select, Wrap: boolean): integer;
 const
   MinWidth = 60;
 var
@@ -310,7 +310,7 @@ begin
     y1 := Size.y div 3;
     y2 := size.y - 2;
     if Wrap then
-      Content:=WordWrap(Content,x2-x1-1);
+      Content := WordWrap(Content, x2 - x1 - 1);
     ListViewer.x1 := x1 + 1;
     ListViewer.y1 := y1 + 3;
     ListViewer.x2 := x2 - 1;
@@ -388,7 +388,7 @@ begin
         else
         begin
           writeln('Output :');
-          AddLog('Output : '#10,True);
+          AddLog('Output : '#10, True);
           Options := [poUsePipes];
           Execute;
           while Running or (Output.NumBytesAvailable > 0) do
@@ -396,21 +396,21 @@ begin
             if Output.NumBytesAvailable > 0 then
             begin
               BytesRead := Output.Read(Buffer, SizeOf(Buffer) - 1);
-              Line:='';
-              for i:=1 to BytesRead do
-                if Buffer[i]=#10 then
-                  Line:=Line+#13#10
+              Line := '';
+              for i := 1 to BytesRead do
+                if Buffer[i] = #10 then
+                  Line := Line + #13#10
                 else
-                  Line:=Line+Buffer[i];
+                  Line := Line + Buffer[i];
               Write(Line);
-              AddLog(Line,True);
+              AddLog(Line, True);
             end;
             if KeyPressed then
             begin
               ReadLn(Line);
               Line := Line + #13#10;
               Input.Write(Line[1], Length(Line));
-              AddLog(Line,True);
+              AddLog(Line, True);
             end;
             Sleep(20);
           end;
@@ -418,14 +418,14 @@ begin
         WaitOnExit;
         AddLog(Screen.Name + #10 + 'Exit code : ' + IntToStr(ExitCode) + #10);
         writeln(chr(13));
-        if ExitCode<>0 then
+        if ExitCode <> 0 then
         begin
           InvVideo;
-          writeln('Error return code=',ExitCode,' ');
+          writeln('Error return code=', ExitCode, ' ');
           NormVideo;
         end
         else
-          write('Ended, ');
+          Write('Ended, ');
         writeln('press any key to return previous screen.');
         Free;
       end;
@@ -549,7 +549,7 @@ begin
     DrawBBox(1, 1, Size.x, Size.y - 1, Screen.Title,
       'F1=Help', 'F2=Refresh', 'F3=Back', 'F4=List +',
       'F5=Shorcut', 'F6=Shell', 'Enter=Do', 'Esc=Exit');
-    ClrScr(2, 4, Size.x , Size.Y - 5);
+    ClrScr(2, 4, Size.x, Size.Y - 5);
     CursorOff;
 
     for i := 0 to Screen.Items.Count - 1 do   //Into 2 pass for visual aspect
@@ -566,7 +566,7 @@ begin
           Write('+[')
         else if Item.Required then
           Write('*[')
-        else if Item.ItemType=itNumeric then
+        else if Item.ItemType = itNumeric then
           Write('#[')
         else
           Write(' [');
@@ -639,7 +639,8 @@ begin
   end;
 end;
 
-function ShowScreenReport(var Index: integer; Screen: TScreen): integer;
+function ShowScreenReport(var Index: integer; Screen: TScreen;
+  const simpleReport: boolean = True): integer;
 var
   i: integer;
   ListViewer: TListViewer;
@@ -655,7 +656,7 @@ begin
       'F1=Help', 'F2=Refresh', 'F3=Back', '',
       'F5=Shorcut', 'F6=Shell', '', 'Esc=Exit');
     Content := GetExecConsole(Screen.Action, Screen);
-    if Pos('Error :', Content) = 0 then
+    if (Pos('Error :', Content) = 0) and not SimpleReport then
     begin
       Table.WidthMin := Size.x - 1;
       Table.DisplayMode := dmPartialTable;
@@ -813,9 +814,10 @@ procedure VerifyScreenFiles;
 
   procedure Proceed;
   var
-    io: integer;
+    io, i: integer;
     Files: TSearchRec;
     Screen: TScreen;
+    FileName:String;
   begin
     Screen := TScreen.Create;
     try
@@ -824,6 +826,15 @@ procedure VerifyScreenFiles;
       begin
         writeln('Verify ' + Files.Name);
         Screen.LoadFromFile(ScreenFileName(Files.Name));
+        if Screen.ScreenType=stMenu then
+        begin
+          for i:=0 to Screen.Items.Count-1 do
+          begin
+            FileName:=ScreenFileName(Screen.Items[i].Action);
+            if Not FileExists(FileName) then
+              Raise(Exception.Create(FileName+' not found in '+ScreenFileName(Files.Name)));
+          end;
+        end;
         io := FindNext(Files);
       end;
       FindClose(Files);
@@ -879,14 +890,14 @@ begin
     end
     else if (Option = '-v') or (Option = '--version') then
     begin
-      write('@Copyright (C) 2025 Written by NEUTS JL ');
+      Write('@Copyright (C) 2025 Written by NEUTS JL ');
       WriteLn(GetAppName + ' ' + KVersion);
       halt(0);
     end
     else if (Option = '-a') or (Option = '--ascii') then
       CurrentBorderStyle := bsAscii
     else if (Option = '-n') or (Option = '--nolog') then
-      NoLog := true
+      NoLog := True
     else if (Option = '-w') or (Option = '--wsl') then
     begin
       {$IFDEF WINDOWS}
@@ -899,13 +910,13 @@ begin
     end
     else if (Option = '-l') or (Option = '--log') then
     begin
-      inc(i);
-      LogFileName:=ParamStr(i);
+      Inc(i);
+      LogFileName := ParamStr(i);
     end
     else if (Option = '-s') or (Option = '--script') then
     begin
-      inc(i);
-      ScriptFileName:=ParamStr(i);
+      Inc(i);
+      ScriptFileName := ParamStr(i);
     end
     else if (Option = '-U') or (Option = '--update') then
       UpdateScreenFiles
@@ -932,9 +943,9 @@ var
   Stop, Interactive: boolean;
 begin
   CurrentBorderStyle := bsSimple;
-  NoLog:=False;
-  LogFilename:='';
-  ScriptFilename:='';
+  NoLog := False;
+  LogFilename := '';
+  ScriptFilename := '';
   FileName := '';
   WSL := False;
   Index := -1;
@@ -944,8 +955,8 @@ begin
   try
     ShortCuts.Load;
     CheckParameters(FileName);
-    if (LogFilename<>'') and NoLog then
-      Raise(Exception.Create('-l,--log option not compatible with -n,nolog option'));
+    if (LogFilename <> '') and NoLog then
+      raise(Exception.Create('-l,--log option not compatible with -n,nolog option'));
     if FileName = '' then
       FileName := 'main_menu';
     Interactive := True;
@@ -958,6 +969,8 @@ begin
           Key := ShowScreenForm(Index, Screen);
         stReport:
           Key := ShowScreenReport(Index, Screen);
+        stDisplay:
+          Key := ShowScreenReport(Index, Screen, True);
       end;
       case Key of
         vkF1:
