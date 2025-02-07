@@ -30,35 +30,35 @@
         <IsPartOfProject Value="True"/>
       </Unit>
       <Unit>
-        <Filename Value="sources\umain.pas"/>
+        <Filename Value="src\umain.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit>
       <Unit>
-        <Filename Value="sources\uscreenfile.pas"/>
+        <Filename Value="src\uscreenfile.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit>
       <Unit>
-        <Filename Value="..\..\libs\include\ttyconsole\sources\uttykeyboard.pas"/>
+        <Filename Value="..\..\libs\include\ttyconsole\src\uttykeyboard.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit>
       <Unit>
-        <Filename Value="..\..\libs\include\ttyconsole\sources\uttylist.pas"/>
+        <Filename Value="..\..\libs\include\ttyconsole\src\uttylist.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit>
       <Unit>
-        <Filename Value="..\..\libs\include\ttyconsole\sources\uttyeditfields.pas"/>
+        <Filename Value="..\..\libs\include\ttyconsole\src\uttyeditfields.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit>
       <Unit>
-        <Filename Value="..\..\libs\include\ttyconsole\sources\ucsvttytable.pas"/>
+        <Filename Value="..\..\libs\include\ttyconsole\src\ucsvttytable.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit>
       <Unit>
-        <Filename Value="..\..\libs\include\ttyconsole\sources\uttyconsole.pas"/>
+        <Filename Value="..\..\libs\include\ttyconsole\src\uttybox.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit>
       <Unit>
-        <Filename Value="..\..\libs\include\ttyconsole\sources\uttybox.pas"/>
+        <Filename Value="..\..\libs\include\ttyconsole\src\uttyconsole.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit>
     </Units>
@@ -67,11 +67,11 @@
     <Version Value="11"/>
     <PathDelim Value="\"/>
     <Target>
-      <Filename Value="runtime\$(TargetOS)\nssmitty"/>
+      <Filename Value="bin\$(TargetOS)\nssmitty"/>
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
-      <OtherUnitFiles Value="C:\Sdk\lazarus64-2025\fpc\3.2.2\units\x86_64-win64\fv\;sources;..\..\libs\include\ttyconsole\sources"/>
+      <OtherUnitFiles Value="C:\Sdk\lazarus64-2025\fpc\3.2.2\units\x86_64-win64\fv\;src;..\..\libs\include\ttyconsole\src"/>
       <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
     <Linking>
