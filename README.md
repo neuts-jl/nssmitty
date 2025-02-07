@@ -31,6 +31,61 @@ Available options:
   -V, --verify    Verify screens database
   -B, --build     Build shortcuts dico
 
+## Screen file structure :
++------------+------------------+---------+-------------+----------------------------------------------------------------------------------------------+
+| Tag        | Position in file | Default | Position    | Description                                                                                  |
++------------+------------------+---------+-------------+----------------------------------------------------------------------------------------------+
+| Tag        | Position         | in      | file        | Authorization or values depending on screen type Default Position Description                |
+| The        | character        | |       | after       | "tag = " allows you to write on several lines,                                               |
+| there      | must             | be      | an          | indentation of 2 spaces, without an empty line                                               |
+| title      | yes              | yes     | yes         | Required File begin Defines the title of the screen.                                         |
+| type       | menu             | report  | form        | menu Anywhere Specifies the type of the screen.                                              |
+| help       | yes              | yes     | yes         | Empty Anywhere Provides contextual help to explain the purpose of the screen.                |
+| action     | no               | yes     | yes         | Required Anywhere Contains the script or command that will be executed when the user         |
+| parent     | yes              | yes     | yes         | Empty Anywhere Indicates the parent menu to which this screen belongs.                       |
+| logconsole | no               | no      | yes         | yes Anywhere Allows capturing of the console display, to be disabled if display              |
+| problem    | and/or           | if      | interactive | shell                                                                                        |
+| shortcut   | yes              | yes     | yes         | Empty Anywhere Sets a shortcut to execute the screen.                                        |
+| caption    | yes              | no      | yes         | required To start field Defines the label displayed of the field.                            |
+| type       | action           | no      | input       | input if form Anywhere Specifies the type of the field.                                      |
+| name       | no               | no      | yes         | Empty Anywhere Defines the internal name of the field, used in the script. It must be        |
+| help       | yes              | no      | yes         | Empty Anywhere Provides contextual help to explain the purpose of the field                  |
+| default    | no               | no      | yes         | Empty Anywhere Specifies the default value based on the user's selection. See values         |
+| condition  | no               | no      | yes         | Empty Anywhere Set a condition to display or enable the field. You must specify the          |
+| name       | of               | another | field.      | If this condition field is empty, the field will                                             |
+| values     | no               | no      | yes         | Empty Anywhere (Only for lists) Defines the available options. if the content starts         |
+| with       | $(               | it      | will        | be the shell that provides the values, otherwise the                                         |
+| fixed      | values           | will    | be          | separated by commas                                                                          |
+| required   | no               | no      | yes         | no Anywhere Indicates whether the field is mandatory.                                        |
+| action     | yes              | no      | no          | required if menu Anywhere Contains the script or command that will be executed when the user |
++------------+------------------+---------+-------------+----------------------------------------------------------------------------------------------+
+
+## screen file example
+'''
+title = Change User Password
+type = form
+shortcut = passwd
+parent = user_mgmt_menu
+logconsole = no
+action = \
+  CMD="passwd"
+  CMD="$CMD $Username"
+  echo "Changing password for user: $Username"
+  eval "$CMD"
+  if [ $? -eq 0 ]; then
+      echo "Password changed successfully."
+  else
+      echo "Error while changing the password."
+  fi
+
+caption = User name
+name = Username
+help = Select the username of the account to change the password for.
+type = list
+values = $(cut -d: -f1 /etc/passwd)
+required = yes
+
+
 ## WARNING : 
 This program does not use the CRT unit, because it disrupts
 the proper functioning of the console, especially for launched
