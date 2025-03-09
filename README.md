@@ -25,9 +25,9 @@ this will allow you to share your LINUX knowledge.
  (to be able to make scripts later for example)
 
 ## Command line :
-# Usage: nssmitty [options] [shortcut]
+### Usage: nssmitty [options] [shortcut]
 
-## Available options:
+### Available options:
 - `-h`, `--help` : Show this help  
 - `-v`, `--version` : Show the version  
 - `-a`, `--ascii` : Run in ascii characters  
